@@ -1,0 +1,65 @@
+
+body {
+	text-align: center;
+	background-color: #fff; 
+	font-family:verdana; 
+	font-size: 10px; 
+	background-color: lightgray;
+}
+
+#content {
+	width: 960px;
+	margin: auto;
+	background-color: white;
+}
+
+#header {
+	text-align: left;
+	padding: 0px;
+}
+
+#main {
+	
+}
+
+#footer {
+	text-align: left;
+	padding: 0px;
+}
+
+.scoreboard_info_line {
+	width: 100%;
+	background-color: rgb(0, 77, 153);
+	color: rgb(234, 234, 234);
+	text-align: left;
+	padding: 0px;
+}
+
+.scoreboard_nav {
+	float: left;
+	padding: 8px;
+}
+
+.scoreboard_refresh {
+	float: right;
+	padding: 8px;
+}
+
+.header_text {
+	padding: 5px;
+}
+
+#header .title {
+	color: rgb(54, 57, 61);
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: bold;	
+}
+
+#header .tagline {
+	color: rgb(63, 76, 107);
+	font-size: 100%;
+	text-transform: lowercase;
+	font-weight: bold;	
+}
+
