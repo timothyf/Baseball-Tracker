@@ -1,0 +1,23 @@
+#calendar {
+	border:solid #666666 1px;
+	background:#ffffff;
+	padding-bottom:5px;
+	padding-top:5px;
+	width:710px;
+	margin-left: 80px;
+}	
+
+#calendar .ng-cal-header-table {
+	width:700px;
+}
+
+#calendar .ng-cal {
+	width:178px;
+	float:left;
+	margin-right:0px;
+}
+
+#cal_wrapper {
+	padding: 10px;
+	text-align: center;
+}

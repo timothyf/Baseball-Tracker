@@ -1,0 +1,73 @@
+
+<div class="game">
+	<table class="linescore" cellspacing="0">
+		<tr>
+			<th class="final">
+				<%= game.status.status %>
+			</th>	
+			<th>1</th>
+			<th>2</th>	
+			<th>3</th>	
+			<th>4</th>	
+			<th>5</th>	
+			<th>6</th>	
+			<th>7</th>	
+			<th>8</th>
+			<th>9</th>	
+			<th>R</th>
+			<th>H</th>	
+			<th>E</th>	
+		</tr>
+		<tr>
+			<td class="team_name"><%= game.away_team_name %></td>
+			<% game.away_innings.each do |inning| %>
+				<td><%= inning %></td>
+			<% end %>
+			<td class="rhe"><%= game.away_runs %></td>
+			<td><%= game.away_hits %></td>
+			<td><%= game.away_errors %></td>
+		</tr>
+		<tr>
+			<td class="team_name"><%= game.home_team_name %></td>
+			<% game.home_innings.each do |inning| %>
+				<td><%= inning %></td>
+			<% end %>
+			<td class="rhe"><%= game.home_runs %></td>
+			<td><%= game.home_hits %></td>
+			<td><%= game.home_errors %></td>
+		</tr>
+	</table>
+	<table class="linescore_notes" cellspacing="0">
+		<tr>
+			<td>
+				<% if game.winning_pitcher && game.winning_pitcher.first != '' %>
+					<b>W: </b>
+					<%= game.winning_pitcher.last %> (<%= game.winning_pitcher.wins %>-<%= game.winning_pitcher.losses %>)
+				<% end %>
+				<% if game.losing_pitcher && game.losing_pitcher.first != '' %>
+					<b>L: </b>
+					<%= game.losing_pitcher.last %> (<%= game.losing_pitcher.wins %>-<%= game.losing_pitcher.losses %>)
+				<% end %>
+				<% if game.save_pitcher && game.save_pitcher.first != '' %>
+					<b>S: </b>
+					<%= game.save_pitcher.last %> (<%= game.save_pitcher.saves %>)
+				<% end %>
+				<br/>
+				<% if game.homeruns && game.homeruns.length > 0 %>
+					<b>HR:</b>
+					<% game.homeruns.each do |player| %>
+						<%= player.last %> (<%= player.std_hr %>)
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="links">
+				<a href="">boxscore</a> - 
+				<a href="">plays</a> - 
+				<a href="">pitches</a> - 
+				<a href="">video</a>
+			</td>
+		</tr>
+	</table>
+</div>
