@@ -1,1 +1,3 @@
-Scoreboard Content
+<% @games.each do |game| %>
+	<%= render :partial=>'linescore', :locals=>{:game => game} %>
+<% end %>
