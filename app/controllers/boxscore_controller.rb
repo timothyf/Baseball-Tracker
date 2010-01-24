@@ -1,0 +1,2 @@
+class BoxscoreController < ApplicationController
+end
