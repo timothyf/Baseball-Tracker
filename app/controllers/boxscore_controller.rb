@@ -3,7 +3,7 @@ require 'box_score'
 
 class BoxscoreController < ApplicationController
   
-  
+  # Displays the boxscore for the game specified by the gid parameter
   def index
     @bs = BoxScore.new
     @bs.load_from_id(params[:gid])
@@ -18,6 +18,8 @@ class BoxscoreController < ApplicationController
     @home_batters_text = @bs.home_batting_text
     @away_batters_text = @bs.away_batting_text
     @game_info = @bs.get_game_info
+    
+    # fetch all game linescores to display on the boxscore page
   end
   
   
