@@ -19,15 +19,10 @@ class BoxScore
   attr_accessor :date, :away_wins, :away_loss, :home_wins, :home_loss, :status_ind
   
   
-  def initialize
-    super
-  end
-  
-  
   # Loads the boxscore XML from the MLB gameday server and parses it using REXML
   def load_from_id(gid)
     @gid = gid
-    @game = Game.new(gid)
+    #@game = Game.new(gid)
     @xml_data = GamedayFetcher.fetch_boxscore(gid)
     @xml_doc = REXML::Document.new(@xml_data)
     self.linescore = LineScore.new
@@ -85,7 +80,7 @@ class BoxScore
     away_batters_text = self.away_batting_text
     game_info = get_game_info
     gameday_info = GamedayUtil.parse_gameday_id('gid_' + gid)
-    template = ERB.new File.new(File.expand_path(File.dirname(__FILE__) + "./" + template_filename)).read, nil, "%"  
+    template = ERB.new File.new(File.expand_path(File.dirname(__FILE__) + "/" + template_filename)).read, nil, "%"  
     return template.result(binding)
   end
   
