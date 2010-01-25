@@ -1,0 +1,125 @@
+#boxscore {
+	padding: 8px;
+	margin-top: 20px;
+}
+
+#linescore {
+	font-size: 10pt;
+}
+
+#linescore, #pitching, #batting, #game_info {
+	float: left;
+	clear: both;
+	text-align: left;
+}
+
+#away_batters, #home_batters {
+	float: left;
+	width: 440px;
+	margin: 0px;
+	margin-top: 0px;
+	margin-right: 10px;
+}
+
+#away_pitchers, #home_pitchers {
+	float: left;
+	width: 450px;
+	margin: 0px;
+}
+
+#game_info {
+	margin-top: 20px;
+	width: 600px;
+}
+	
+	#linescore label {
+		font-weight: bold;
+		width: 90px;
+		display: block;
+		float: left;
+	}
+	
+	#batting label, #pitching label {
+		width: 90px;
+		display: block;
+		float: left;
+	}
+	
+	#linescore, #batting, #pitching, #game_info {
+		width: 900px;
+	}
+	
+	#title {
+		font-weight: bold;
+		font-size: 12pt;
+	}
+	
+	.team_labels {
+		float: left;
+		clear: both;
+		margin-top: 20px;
+	}
+	
+	
+	.team_labels .visitor_label, .team_labels .home_label {
+		float: left;
+		width: 440px;
+		text-align: left;
+		background-color: blue;
+		color: white;
+		margin-right: 10px;
+	}
+	
+	.header_row {
+		font-weight: bold;
+	}
+	
+	.batter_row, .pitcher_row {
+		text-align: center;
+	}
+	
+	.name_field {
+		width: 80px;
+		text-align: left;
+	}
+	
+	.data_field {
+		width: 20px;
+		text-align: center;
+	}
+
+.note_field {
+	width: 60px;
+	text-align: left;
+}
+
+table td {
+	border-bottom:1px solid #EEEEEE;
+}
+
+.linescore_city {
+	font-weight: bold;
+	width: 80px;
+	text-align: left;
+}
+
+.linescore_inning {
+	width: 20px;
+	text-align: center;
+}
+
+.linescore_totals {
+	width: 20px;
+	text-align: center;
+}
+
+.linescore_header {
+	font-weight: bold;
+	text-align: center;
+	background-color: #EEEEEE;
+}
+
+.linescore_header td {
+	border-bottom: 1px solid #CCCCCC;
+}
+
