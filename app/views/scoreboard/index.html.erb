@@ -1,24 +1,13 @@
-<div class="scoreboard_info_line">
-	<div class="scoreboard_nav">Scoreboard for <%= @month%>/<%= @date %>/<%= @year %>.  Jump to: 
-		<%= link_to 'today', {:controller=>'Calendar', :action=>'today'} %> |
-		<%= link_to 'previous day', {:controller=>'Calendar', 
-									 :action=>'prev_day',
-									 :year=>@year,
-									 :month=>@month,
-									 :date=>@date} %> |
-		<%= link_to 'next day', {:controller=>'Calendar', 
-									 :action=>'next_day',
-									 :year=>@year,
-									 :month=>@month,
-									 :date=>@date} %> |
-		<%= link_to 'pick a new day', :controller=>'Calendar' %>
-	</div>
-	<div class="scoreboard_refresh">
-		refresh: 10 | 30 | 60 | off
-	</div>
-	<div style="clear:both;"></div>
-</div>
+<%= render :partial=>'scoreboard_nav' %>
 
 <% @games.each do |game| %>
 	<%= render :partial=>'linescore', :locals=>{:game => game} %>
 <% end %>
+
+<% if @games.size == 0 %>
+	<div id="no_games">
+		No Games Scheduled (or data not available)
+	</div>
+<% end %>
+
+<%= render :partial=>'scoreboard_nav' %>

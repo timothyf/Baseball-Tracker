@@ -1,6 +1,57 @@
+#game_menu {
+	float:left;
+	padding:0 10px;
+	width:160px;
+	height: 600px;
+}
+
+div.tabs {
+	font-size:80%;
+	margin-left:15px;
+	margin-top:2px;
+	overflow:hidden;
+	padding-top:2px;
+}
+
+div.tabs a.tab {
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	background-color:#EEEEEE;
+	border-left:1px solid #CCCCCC;
+	border-right:1px solid #CCCCCC;
+	border-top:1px solid #CCCCCC;
+	color:#356AA0;
+	display:block;
+	float:left;
+	font-size:120%;
+	font-weight:bold;
+	height:21px;
+	margin-right:6px;
+	padding-right:13px;
+	text-decoration:none;
+}
+
+div.tabs a.tab span {
+	display:block;
+	line-height:13px;
+	padding:4px 0 4px 15px;
+}
+
+div.tab_content {
+	-moz-border-radius-topright:5px;
+	border:1px solid #CCCCCC;
+	margin:0 0 20px;
+	padding:10px;
+}
+
+#game_detail {
+	float:left;
+	padding:0 0 20px;
+	width:700px;
+}
+
 #boxscore {
 	padding: 8px;
-	margin-top: 20px;
 }
 
 #linescore {
@@ -15,16 +66,20 @@
 
 #away_batters, #home_batters {
 	float: left;
-	width: 440px;
+	width: 320px;
 	margin: 0px;
 	margin-top: 0px;
 	margin-right: 10px;
+	padding: 3px;
 }
 
 #away_pitchers, #home_pitchers {
 	float: left;
-	width: 450px;
+	width: 320px;
 	margin: 0px;
+	margin-top: 0px;
+	margin-right: 10px;
+	padding: 3px;
 }
 
 #game_info {
@@ -45,8 +100,12 @@
 		float: left;
 	}
 	
-	#linescore, #batting, #pitching, #game_info {
-		width: 900px;
+	#linescore {
+		width: 700px;
+	}
+	
+	#batting, #pitching {
+		width: 680px;
 	}
 	
 	#title {
@@ -63,11 +122,13 @@
 	
 	.team_labels .visitor_label, .team_labels .home_label {
 		float: left;
-		width: 440px;
+		width: 320px;
 		text-align: left;
 		background-color: blue;
 		color: white;
 		margin-right: 10px;
+		padding: 3px;
+		font-weight: bold;
 	}
 	
 	.header_row {
@@ -99,7 +160,7 @@ table td {
 
 .linescore_city {
 	font-weight: bold;
-	width: 80px;
+	width: 100px;
 	text-align: left;
 }
 

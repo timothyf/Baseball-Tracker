@@ -1,11 +1,26 @@
 <%= stylesheet_link_tag 'boxscore' %>
 
-
 <div id="title">	
 	Boxscore for <%= @gameday_info['year'] %>/<%= @gameday_info['month'] %>/<%= @gameday_info['day'] %><br/>
 	<%= @cities[0] %> vs. <%= @cities[1] %><br/>
 </div>
-<div id="boxscore">
+
+<div id="game_menu">
+	Game Menu
+</div>
+
+<div class="tabs">
+	<a class="tab selected" href="boxscore?gid=2009_10_01_minmlb_detmlb_1"><span>Boxscore</span></a>
+	<a class="tab" href="/playbyplay?gid=2009_10_01_minmlb_detmlb_1"><span>Play-by-Play</span></a>
+	<a class="tab" href="/pitchbypitch?gid=2009_10_01_minmlb_detmlb_1"><span>Pitch-by-Pitch</span></a> 
+	<a class="tab" href="/highlights?gid=2009_10_01_minmlb_detmlb_1"><span>Highlights</span></a>
+</div>
+
+
+
+
+<div id="game_detail">
+<div id="boxscore" class="tab_content">
 	<div id="linescore">
 		<table id="linescore_table" cellspacing="0px">
 			<tr class="linescore_header">
@@ -114,4 +129,5 @@
 		<%= @game_info %>
 	</div>
 	<div style="clear:both;"></div>
+</div>
 </div>

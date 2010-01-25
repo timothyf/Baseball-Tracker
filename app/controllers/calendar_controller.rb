@@ -13,20 +13,22 @@ class CalendarController < ApplicationController
   
   
   def prev_day
-    @year = GamedayUtil.convert_digit_to_string(params[:year].to_i)
-    @month = GamedayUtil.convert_digit_to_string(params[:month].to_i)
-    @date = GamedayUtil.convert_digit_to_string(params[:date].to_i)
-    current_date = Time.local(@year, @month, @date)
-    # redirect to scoreboard passing prev day as params
+    year = GamedayUtil.convert_digit_to_string(params[:year].to_i)
+    month = GamedayUtil.convert_digit_to_string(params[:month].to_i)
+    date = GamedayUtil.convert_digit_to_string(params[:date].to_i)
+    dt = Time.local(year, month, date)
+    dt -= 86400 # adds 1 day (specified in seconds)
+    redirect_to :controller=>'scoreboard', :action=>'index', :year=>dt.year, :month=>dt.month, :date=>dt.day
   end
   
   
   def next_day
-    @year = GamedayUtil.convert_digit_to_string(params[:year].to_i)
-    @month = GamedayUtil.convert_digit_to_string(params[:month].to_i)
-    @date = GamedayUtil.convert_digit_to_string(params[:date].to_i)
-    current_date = Time.local(@year, @month, @date)
-    # redirect to scoreboard passing next day as params
+    year = GamedayUtil.convert_digit_to_string(params[:year].to_i)
+    month = GamedayUtil.convert_digit_to_string(params[:month].to_i)
+    date = GamedayUtil.convert_digit_to_string(params[:date].to_i)
+    dt = Time.local(year, month, date)
+    dt += 86400 # adds 1 day (specified in seconds)
+    redirect_to :controller=>'scoreboard', :action=>'index', :year=>dt.year, :month=>dt.month, :date=>dt.day
   end
   
 end

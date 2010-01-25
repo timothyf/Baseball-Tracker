@@ -1,0 +1,2 @@
+class PlayByPlayController < ApplicationController
+end

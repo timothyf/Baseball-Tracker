@@ -28,6 +28,8 @@ body {
 }
 
 .scoreboard_info_line {
+	float: left;
+	clear: both;
 	width: 100%;
 	background-color: rgb(0, 77, 153);
 	color: rgb(234, 234, 234);
@@ -139,5 +141,14 @@ table.linescore_notes td {
 
 .links a, .links a:visited {
 	color: blue;
+}
+
+#no_games {
+	float: left;
+	clear: both;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-weight: bold;
 }
 

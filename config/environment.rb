@@ -1,5 +1,5 @@
 # Be sure to restart your server when you modify this file
-
+ENV['GEM_PATH'] = '/home/timothyf/.gems:/usr/lib/ruby/gems/1.8'
 # Uncomment below to force Rails into production mode when
 # you don't control web/app server and can't set it the proper way
 # ENV['RAILS_ENV'] ||= 'production'

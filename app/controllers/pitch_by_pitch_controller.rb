@@ -1,0 +1,2 @@
+class PitchByPitchController < ApplicationController
+end
