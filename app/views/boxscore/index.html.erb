@@ -6,7 +6,34 @@
 </div>
 
 <div id="game_menu">
-	Game Menu
+	<% @games.each do |game| %>
+		<% if game.away_team_city == @cities[0] %>
+			<div class="linescore_brief game_selected">
+		<% else %>
+			<div class="linescore_brief">
+		<% end %>
+			<table cellspacing="0px">
+				<tr>
+					<th class="team_name">Final</th>
+					<th class="linescore_totals">R</th>
+					<th class="linescore_totals">H</th>
+					<th class="linescore_totals">E</th>
+				</tr>
+				<tr>
+					<td class="team_name"><%= game.away_team_name %></td>
+					<td class="linescore_totals"><%= game.away_runs %></td>
+					<td class="linescore_totals"><%= game.away_hits %></td>
+					<td class="linescore_totals"><%= game.away_errors %></td>
+				</tr>
+				<tr>
+					<td class="team_name"><%= game.home_team_name %></td>
+					<td class="linescore_totals"><%= game.home_runs %></td>
+					<td class="linescore_totals"><%= game.home_hits %></td>
+					<td class="linescore_totals"><%= game.home_errors %></td>
+				</tr>
+			</table>
+		</div>
+	<% end %>
 </div>
 
 <div class="tabs">
@@ -25,7 +52,7 @@
 		<table id="linescore_table" cellspacing="0px">
 			<tr class="linescore_header">
 				<td class="linescore_city">Team</td>
-				<% (0..8).each do |num| %>
+				<% (0..@innings.length-1).each do |num| %>
 					<td><%= (num + 1).to_s %></td>
 				<% end %>
 				<td>R</td>
@@ -34,7 +61,7 @@
 			</tr>
 			<tr>
 	      		<td class="linescore_city"><%= @cities[0] %></td>
-		  		<% (0..8).each do |num| %>
+		  		<% (0..@innings.length-1).each do |num| %>
 		  			<td class="linescore_inning"><%= @innings[num][0] %></td>
 		  		<% end %>
 	      		<td class="linescore_totals"><%= @tots[0][0] %></td>
@@ -43,7 +70,7 @@
 			</tr>
 			<tr>
 		   		<td class="linescore_city"><%= @cities[1] %></td>           
-		  		<% (0..8).each do |num| %>
+		  		<% (0..@innings.length-1).each do |num| %>
 		  			<td class="linescore_inning"><%= @innings[num][1] %></td>
 		  		<% end %>
 	      		<td class="linescore_totals"><%= @tots[1][0] %></td>

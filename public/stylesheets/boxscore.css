@@ -184,3 +184,21 @@ table td {
 	border-bottom: 1px solid #CCCCCC;
 }
 
+.linescore_brief {
+	text-align: left;
+	margin-bottom: 5px;
+}
+
+.game_selected {
+	border: 1px solid #1874CD;
+	background-color: #FFFF88;
+}
+
+.linescore_brief th {
+	border-bottom:1px solid #CCCCCC;
+	color: #27408B;
+}
+
+.team_name {
+	width: 65px;
+}

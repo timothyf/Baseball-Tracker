@@ -20,6 +20,9 @@ class BoxscoreController < ApplicationController
     @game_info = @bs.get_game_info
     
     # fetch all game linescores to display on the boxscore page
+    sb = Scoreboard.new
+    sb.load_for_date(@gameday_info['year'], @gameday_info['month'], @gameday_info['day'])
+    @games = sb.games
   end
   
   

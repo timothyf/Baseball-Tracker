@@ -5,15 +5,10 @@
 			<th class="final">
 				<%= game.status.status %>
 			</th>	
-			<th>1</th>
-			<th>2</th>	
-			<th>3</th>	
-			<th>4</th>	
-			<th>5</th>	
-			<th>6</th>	
-			<th>7</th>	
-			<th>8</th>
-			<th>9</th>	
+			<% num_innings = game.away_innings.length > game.home_innings.length ? game.away_innings.length : game.home_innings.length %>
+			<% (1..num_innings).each do |count| %>
+			  <th><%= count %></th>
+			<% end %>
 			<th>R</th>
 			<th>H</th>	
 			<th>E</th>	
