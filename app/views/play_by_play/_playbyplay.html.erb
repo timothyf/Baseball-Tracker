@@ -1,0 +1,17 @@
+<div class="pbp_inning">
+	<% (1..@eventlog.max_inning).each do |inning| %>
+		<div class="pbp_inning_label">Top of Inning - <%= inning %> - <%= @bs.cities[0] %></div>
+		<% processing_away = true %>
+		<ul>
+		<% @eventlog.events_by_inning(inning.to_s).each do |event| %>
+			<% if event.team == 'home' && processing_away == true %>
+				</ul>
+				<div class="pbp_inning_label">Bottom of Inning - <%= inning %> - <%= @bs.cities[1] %></div>
+				<ul>
+				<% processing_away = false %>
+			<% end %>
+			<li><%= event.description %></li>
+		<% end %>
+		</ul>
+	<% end %>
+</div>

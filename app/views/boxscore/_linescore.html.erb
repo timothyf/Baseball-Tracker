@@ -1,0 +1,31 @@
+<div id="linescore">
+	<table id="linescore_table" cellspacing="0px">
+		<tr class="linescore_header">
+			<td class="linescore_city">Team</td>
+			<% (0..@bs.linescore.innings.length-1).each do |num| %>
+				<td><%= (num + 1).to_s %></td>
+			<% end %>
+			<td>R</td>
+			<td>H</td>
+			<td>E</td>
+		</tr>
+		<tr>
+      		<td class="linescore_city"><%= @bs.cities[0] %></td>
+	  		<% (0..@bs.linescore.innings.length-1).each do |num| %>
+	  			<td class="linescore_inning"><%= @bs.linescore.innings[num][0] %></td>
+	  		<% end %>
+      		<td class="linescore_totals"><%= @bs.linescore.away_team_runs %></td>
+			<td class="linescore_totals"><%= @bs.linescore.away_team_hits %></td>
+			<td class="linescore_totals"><%= @bs.linescore.away_team_errors %></td>
+		</tr>
+		<tr>
+	   		<td class="linescore_city"><%= @bs.cities[1] %></td>           
+	  		<% (0..@bs.linescore.innings.length-1).each do |num| %>
+	  			<td class="linescore_inning"><%= @bs.linescore.innings[num][1] %></td>
+	  		<% end %>
+      		<td class="linescore_totals"><%= @bs.linescore.home_team_runs %></td>
+			<td class="linescore_totals"><%= @bs.linescore.home_team_hits %></td>
+			<td class="linescore_totals"><%= @bs.linescore.home_team_errors %></td>
+		</tr>
+	</table>
+</div>

@@ -56,6 +56,7 @@ div.tab_content {
 
 #linescore {
 	font-size: 10pt;
+	padding: 8px;
 }
 
 #linescore, #pitching, #batting, #game_info {
@@ -201,4 +202,35 @@ table td {
 
 .team_name {
 	width: 65px;
+}
+
+.pbp_inning {
+	float: left;
+	clear: both;
+	text-align: left;
+}
+
+.pbp_inning_label {
+	float: left;
+	clear: both;
+	background-color: blue;
+	color: white;
+	padding: 5px;
+	font-size; 12pt;
+	font-weight: bold;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 8px;
+}
+
+.pbp_inning ul {
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	clear: both;
+	list-style: none;
+}
+
+.pbp_inning ul li {
+	line-height: 1.5em;
 }

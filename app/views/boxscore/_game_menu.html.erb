@@ -1,0 +1,30 @@
+<div id="game_menu">
+	<% @games.each do |game| %>
+		<% # if game.away_team_city == @bs.cities[0] %>
+			<!-- <div class="linescore_brief game_selected"> -->
+		<% # else %>
+			<div class="linescore_brief">
+		<% # end %>
+			<table cellspacing="0px">
+				<tr>
+					<th class="team_name">Final</th>
+					<th class="linescore_totals">R</th>
+					<th class="linescore_totals">H</th>
+					<th class="linescore_totals">E</th>
+				</tr>
+				<tr>
+					<td class="team_name"><%= game.away_team_name %></td>
+					<td class="linescore_totals"><%= game.away_runs %></td>
+					<td class="linescore_totals"><%= game.away_hits %></td>
+					<td class="linescore_totals"><%= game.away_errors %></td>
+				</tr>
+				<tr>
+					<td class="team_name"><%= game.home_team_name %></td>
+					<td class="linescore_totals"><%= game.home_runs %></td>
+					<td class="linescore_totals"><%= game.home_hits %></td>
+					<td class="linescore_totals"><%= game.home_errors %></td>
+				</tr>
+			</table>
+		</div>
+	<% end %>
+</div>

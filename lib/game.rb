@@ -1,6 +1,8 @@
 require 'gameday_util'
 require 'team'
 require 'players'
+require 'game_status'
+require 'event_log'
 
 
 # This class represents a single MLB game
@@ -8,7 +10,7 @@ class Game
   
   attr_accessor :gid, :home_team_name, :home_team_abbrev, :visit_team_name, :visit_team_abbrev, 
                 :year, :month, :day, :game_number, :visiting_team, :home_team
-  attr_accessor :boxscore, :rosters
+  attr_accessor :boxscore, :rosters, :eventlog
   
   # additional attributes from master_scoreboard.xml
   attr_accessor :scoreboard_game_id, :ampm, :venue, :game_pk, :time, :time_zone, :game_type
@@ -214,6 +216,15 @@ class Game
   end
   
   
+  def get_eventlog
+    if !@eventlog
+      @eventlog = EventLog.new
+      @eventlog.load_from_id(@gid)
+    end
+    @eventlog
+  end
+  
+  
   # Returns a BoxScore object representing the boxscore for this game
   def get_boxscore
     if !self.boxscore
@@ -235,27 +246,19 @@ class Game
     end
   end
   
-
-  # Returns an array containg two child arrays, one representing the home team
-  # totals, and the other representing the away team totals.  
-  # Each child array contains 3 elements (runs, hits, errors)
-  def get_linescore
-    if self.gid
-      bs = get_boxscore
-      bs.get_linescore_totals
-    else
-      puts "No data for input specified"
-    end
-  end
-  
   
   # Returns a string containing the linescore in the following printed format:
   #   Away 1 3 1
   #   Home 5 8 0
   def print_linescore
-    score = get_linescore
-    output = self.visit_team_name + ' ' + score[0][0] + ' ' + score[0][1] + ' ' + score[0][2] + "\n"
-    output += self.home_team_name + ' ' + score[1][0] + ' ' + score[1][1] + ' ' + score[1][2]
+  	bs = get_boxscore
+  	output = ''
+  	if bs.linescore 
+    	output += self.visit_team_name + ' ' + bs.linescore.away_team_runs + ' ' + bs.linescore.away_team_hits + ' ' + bs.linescore.away_team_errors + "\n"
+    	output += self.home_team_name + ' ' + bs.linescore.home_team_runs + ' ' + bs.linescore.home_team_hits + ' ' + bs.linescore.home_team_errors
+    else
+    	output += 'No linescore available for ' + @visit_team_name + ' vs. ' + @home_team_name
+    end
     output
   end
   
@@ -287,7 +290,11 @@ class Game
   def get_pitchers(home_or_away)
     if self.gid
       bs = get_boxscore
-      bs.get_pitchers(home_or_away)
+      if home_or_away == 'away'
+        bs.pitchers[0]
+      else
+        bs.pitchers[1]
+      end
     else
       puts "No data for input specified"
     end
@@ -300,7 +307,11 @@ class Game
   def get_batters(home_or_away)
     if self.gid
       bs = get_boxscore
-      bs.get_batters(home_or_away)
+      if home_or_away == 'away'
+      	bs.batters[0]
+      else
+        bs.batters[1]
+      end
     else
       puts "No data for input specified"
     end

@@ -1,5 +1,6 @@
 #require 'cache_fetcher'
 require 'gameday'
+require 'gameday_url_builder'
 
 
 # This class is responsible for retrieving data from the Gameday server

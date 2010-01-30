@@ -129,7 +129,7 @@ class Player
   # Returns the Team object representing the team for which this player plays
   def get_team
     if !@team_obj
-      @team = Team.new(self.team)
+      @team_obj = Team.new(self.team)
     end
     @team_obj
   end
