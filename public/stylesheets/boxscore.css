@@ -38,6 +38,7 @@ div.tabs a.tab span {
 }
 
 div.tab_content {
+	float:left;
 	-moz-border-radius-topright:5px;
 	border:1px solid #CCCCCC;
 	margin:0 0 20px;
@@ -204,7 +205,7 @@ table td {
 	width: 65px;
 }
 
-.pbp_inning {
+.pbp {
 	float: left;
 	clear: both;
 	text-align: left;

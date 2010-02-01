@@ -42,29 +42,29 @@ class BoxScore
   
   # Retrieves basic game data from the XML root element and sets in object
   def set_basic_info
-    self.game_id = @xml_doc.root.attributes["game_id"]
-    self.game_pk = @xml_doc.root.attributes["game_pk"]
-    self.home_sport_code = @xml_doc.root.attributes["home_sport_code"]
-    self.away_team_code = @xml_doc.root.attributes["away_team_code"]
-    self.home_team_code = @xml_doc.root.attributes["home_team_code"]
-    self.away_id = @xml_doc.root.attributes["away_id"]
-    self.home_id = @xml_doc.root.attributes["home_id"]
-    self.away_fname = @xml_doc.root.attributes["away_fname"]
-    self.home_fname = @xml_doc.root.attributes["home_fname"]
-    self.away_sname = @xml_doc.root.attributes["away_sname"]
-    self.home_sname = @xml_doc.root.attributes["home_sname"]
-    self.date = @xml_doc.root.attributes["date"]
-    self.away_wins = @xml_doc.root.attributes["away_wins"]
-    self.away_loss = @xml_doc.root.attributes["away_loss"]
-    self.home_wins = @xml_doc.root.attributes["home_wins"]
-    self.home_loss = @xml_doc.root.attributes["home_loss"]
-    self.status_ind = @xml_doc.root.attributes["status_ind"]
+    @game_id = @xml_doc.root.attributes["game_id"]
+    @game_pk = @xml_doc.root.attributes["game_pk"]
+    @home_sport_code = @xml_doc.root.attributes["home_sport_code"]
+    @away_team_code = @xml_doc.root.attributes["away_team_code"]
+    @home_team_code = @xml_doc.root.attributes["home_team_code"]
+    @away_id = @xml_doc.root.attributes["away_id"]
+    @home_id = @xml_doc.root.attributes["home_id"]
+    @away_fname = @xml_doc.root.attributes["away_fname"]
+    @home_fname = @xml_doc.root.attributes["home_fname"]
+    @away_sname = @xml_doc.root.attributes["away_sname"]
+    @home_sname = @xml_doc.root.attributes["home_sname"]
+    @date = @xml_doc.root.attributes["date"]
+    @away_wins = @xml_doc.root.attributes["away_wins"]
+    @away_loss = @xml_doc.root.attributes["away_loss"]
+    @home_wins = @xml_doc.root.attributes["home_wins"]
+    @home_loss = @xml_doc.root.attributes["home_loss"]
+    @status_ind = @xml_doc.root.attributes["status_ind"]
   end
   
   
   # Saves an HTML version of the boxscore
   def dump_to_file
-    GamedayUtil.save_file("boxscore.html", self.to_html('boxscore.html.erb'))
+    GamedayUtil.save_file("boxscore.html", to_html('boxscore.html.erb'))
   end
   
   
@@ -79,8 +79,8 @@ class BoxScore
   
   def set_batting_text
 	  if @xml_doc.root.elements["batting[@team_flag='home']/text_data"]
-	    self.home_batting_text = @xml_doc.root.elements["batting[@team_flag='home']/text_data"].text
-	    self.away_batting_text = @xml_doc.root.elements["batting[@team_flag='away']/text_data"].text
+	    @home_batting_text = @xml_doc.root.elements["batting[@team_flag='home']/text_data"].text
+	    @away_batting_text = @xml_doc.root.elements["batting[@team_flag='away']/text_data"].text
 	  end
   end
   

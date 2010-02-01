@@ -29,18 +29,18 @@ class Game
   def initialize(gid)
     team = Team.new('')
     if gid
-      self.gid = gid
+      @gid = gid
       info = GamedayUtil.parse_gameday_id('gid_'+gid)
-      self.home_team_abbrev = info["home_team_abbrev"]
-      self.visit_team_abbrev = info["visiting_team_abbrev"]
-      self.visiting_team = Team.new(self.visit_team_abbrev )
-      self.home_team = Team.new(self.home_team_abbrev )
-      self.year = info["year"]
-      self.month = info["month"]
-      self.day = info["day"]
-      self.game_number = info["game_number"]
-      self.home_team_name = Team.teams[self.home_team_abbrev][0]
-      self.visit_team_name = Team.teams[self.visit_team_abbrev][0]
+      @home_team_abbrev = info["home_team_abbrev"]
+      @visit_team_abbrev = info["visiting_team_abbrev"]
+      @visiting_team = Team.new(@visit_team_abbrev )
+      @home_team = Team.new(@home_team_abbrev )
+      @year = info["year"]
+      @month = info["month"]
+      @day = info["day"]
+      @game_number = info["game_number"]
+      @home_team_name = Team.teams[@home_team_abbrev][0]
+      @visit_team_name = Team.teams[@visit_team_abbrev][0]
     end
   end
   
@@ -49,40 +49,40 @@ class Game
   def load_from_scoreboard(element)
       @away_innings = []
       @home_innings = []
-      self.scoreboard_game_id = element.attributes['id']
-      self.ampm = element.attributes['ampm']
-      self.venue = element.attributes['venue']
-      self.game_pk = element.attributes['game_pk']
-      self.time = element.attributes['time']
-      self.time_zone = element.attributes['time_zone']
-      self.game_type = element.attributes['game_type']
-      self.away_name_abbrev = element.attributes['away_name_abbrev']
-      self.home_name_abbrev = element.attributes['home_name_abbrev']
-      self.away_code = element.attributes['away_code']
-      self.away_file_code = element.attributes['away_file_code']
-      self.away_team_id = element.attributes['away_team_id']
-      self.away_team_city = element.attributes['away_team_city']
-      self.away_team_name = element.attributes['away_team_name']
-      self.away_division = element.attributes['away_division']
-      self.home_code = element.attributes['home_code']
-      self.home_file_code = element.attributes['home_file_code']
-      self.home_team_id = element.attributes['home_team_id']
-      self.home_team_city = element.attributes['home_team_city']
-      self.home_team_name = element.attributes['home_team_name']
-      self.home_division = element.attributes['home_division']
-      self.day = element.attributes['day']
-      self.gameday_sw = element.attributes['gameday_sw']
-      self.away_games_back = element.attributes['away_games_back']
-      self.home_games_back = element.attributes['home_games_back']
-      self.away_games_back_wildcard = element.attributes['away_games_back_wildcard']
-      self.home_games_back_wildcard = element.attributes['home_games_back_wildcard']
-      self.venue_w_chan_loc = element.attributes['venue_w_chan_loc']
-      self.gameday = element.attributes['gameday']
-      self.away_win = element.attributes['away_win']
-      self.away_loss = element.attributes['away_loss']
-      self.home_win = element.attributes['home_win']
-      self.home_loss = element.attributes['home_loss']
-      self.league = element.attributes['league']
+      @scoreboard_game_id = element.attributes['id']
+      @ampm = element.attributes['ampm']
+      @venue = element.attributes['venue']
+      @game_pk = element.attributes['game_pk']
+      @time = element.attributes['time']
+      @time_zone = element.attributes['time_zone']
+      @game_type = element.attributes['game_type']
+      @away_name_abbrev = element.attributes['away_name_abbrev']
+      @home_name_abbrev = element.attributes['home_name_abbrev']
+      @away_code = element.attributes['away_code']
+      @away_file_code = element.attributes['away_file_code']
+      @away_team_id = element.attributes['away_team_id']
+      @away_team_city = element.attributes['away_team_city']
+      @away_team_name = element.attributes['away_team_name']
+      @away_division = element.attributes['away_division']
+      @home_code = element.attributes['home_code']
+      @home_file_code = element.attributes['home_file_code']
+      @home_team_id = element.attributes['home_team_id']
+      @home_team_city = element.attributes['home_team_city']
+      @home_team_name = element.attributes['home_team_name']
+      @home_division = element.attributes['home_division']
+      @day = element.attributes['day']
+      @gameday_sw = element.attributes['gameday_sw']
+      @away_games_back = element.attributes['away_games_back']
+      @home_games_back = element.attributes['home_games_back']
+      @away_games_back_wildcard = element.attributes['away_games_back_wildcard']
+      @home_games_back_wildcard = element.attributes['home_games_back_wildcard']
+      @venue_w_chan_loc = element.attributes['venue_w_chan_loc']
+      @gameday = element.attributes['gameday']
+      @away_win = element.attributes['away_win']
+      @away_loss = element.attributes['away_loss']
+      @home_win = element.attributes['home_win']
+      @home_loss = element.attributes['home_loss']
+      @league = element.attributes['league']
       
       set_status(element)
       set_innings(element)
@@ -151,28 +151,20 @@ class Game
     
     # Sets the pitchers of record (win, lose, save) from data in the master_scoreboard.xml file
     def set_pitchers(element)
-      element.elements.each("winning_pitcher") { |wp|
+      element.elements.each("winning_pitcher") do |wp|
         @winning_pitcher = Player.new
-        @winning_pitcher.first = wp.attributes['first']
-        @winning_pitcher.last = wp.attributes['last']
-        @winning_pitcher.wins = wp.attributes['wins']
-        @winning_pitcher.losses = wp.attributes['losses']
-        @winning_pitcher.era = wp.attributes['era']
-      }
-      element.elements.each("losing_pitcher") { |lp|
+        @winning_pitcher.init_pitcher_from_scoreboard(wp)
+      end
+      element.elements.each("losing_pitcher") do |lp|
         @losing_pitcher = Player.new
-        @losing_pitcher.first = lp.attributes['first']
-        @losing_pitcher.last = lp.attributes['last']
-        @losing_pitcher.wins = lp.attributes['wins']
-        @losing_pitcher.losses = lp.attributes['losses']
-        @losing_pitcher.era = lp.attributes['era']
-      }
-      element.elements.each("save_pitcher") { |sp|
+        @losing_pitcher.init_pitcher_from_scoreboard(lp)
+      end
+      element.elements.each("save_pitcher") do |sp|
         @save_pitcher = Player.new
         @save_pitcher.first = sp.attributes['first']
         @save_pitcher.last = sp.attributes['last']
         @save_pitcher.saves = sp.attributes['saves']
-      }
+      end
     end
   
   

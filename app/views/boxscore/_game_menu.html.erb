@@ -1,10 +1,10 @@
 <div id="game_menu">
 	<% @games.each do |game| %>
-		<% # if game.away_team_city == @bs.cities[0] %>
-			<!-- <div class="linescore_brief game_selected"> -->
-		<% # else %>
+		<%  if game.away_team_city == @bs.cities[0] %>
+			<div class="linescore_brief game_selected">
+		<%  else %>
 			<div class="linescore_brief">
-		<% # end %>
+		<%  end %>
 			<table cellspacing="0px">
 				<tr>
 					<th class="team_name">Final</th>
@@ -27,4 +27,5 @@
 			</table>
 		</div>
 	<% end %>
+	<div style="clear:both;"></div>
 </div>
