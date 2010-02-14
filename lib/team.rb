@@ -169,7 +169,7 @@ class Team
   # Returns an array containing the leadoff hitters for each game of the specified season.
   def get_leadoff_hitters_by_year(year)
     results = []
-    games = @all_games(year)
+    games = all_games(year)
     games.each do |game|
       boxscore = game.get_boxscore
       leadoffs = boxscore.get_leadoff_hitters
