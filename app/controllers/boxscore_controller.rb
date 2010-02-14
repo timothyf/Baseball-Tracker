@@ -8,6 +8,7 @@ class BoxscoreController < ApplicationController
     @bs = BoxScore.new
     @bs.load_from_id(params[:gid])
     @gameday_info = GamedayUtil.parse_gameday_id('gid_' + params[:gid])    
+    @gid = params[:gid]
     
     # fetch all game linescores to display on the boxscore page
     sb = Scoreboard.new

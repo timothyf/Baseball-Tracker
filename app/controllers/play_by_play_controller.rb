@@ -1,9 +1,10 @@
 class PlayByPlayController < ApplicationController
 
 	def index
-    	@bs = BoxScore.new
-    	@bs.load_from_id(params[:gid])
+    @bs = BoxScore.new
+    @bs.load_from_id(params[:gid])
 		@gameday_info = GamedayUtil.parse_gameday_id('gid_' + params[:gid]) 
+		@gid = params[:gid]
 		
 		@eventlog = EventLog.new
 		@eventlog.load_from_id(params[:gid])

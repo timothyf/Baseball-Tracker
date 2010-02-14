@@ -4,10 +4,10 @@
 <%= render :partial => '/boxscore/game_menu' %>
 
 <div class="tabs">
-	<a class="tab selected" href="boxscore?gid=2009_10_01_minmlb_detmlb_1"><span>Boxscore</span></a>
-	<a class="tab" href="/playbyplay?gid=2009_10_01_minmlb_detmlb_1"><span>Play-by-Play</span></a>
-	<a class="tab" href="/pitchbypitch?gid=2009_10_01_minmlb_detmlb_1"><span>Pitch-by-Pitch</span></a> 
-	<a class="tab" href="/highlights?gid=2009_10_01_minmlb_detmlb_1"><span>Highlights</span></a>
+	<a class="tab selected" href="boxscore?gid=<%= @gid %>"><span>Boxscore</span></a>
+	<a class="tab" href="/play_by_play?gid=<%= @gid %>"><span>Play-by-Play</span></a>
+	<a class="tab" href="/pitchbypitch?gid=<%= @gid %>"><span>Pitch-by-Pitch</span></a> 
+	<a class="tab" href="/highlights?gid=<%= @gid %>"><span>Highlights</span></a>
 </div>
 
 <div id="game_detail" class="tab_content">
