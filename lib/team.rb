@@ -7,6 +7,9 @@ require 'schedule'
 # This class
 class Team
   
+  START_MONTH = 4  # April
+  END_MONTH = 10   # October
+  
   attr_accessor :abrev, :city, :name, :league, :games
   
   # Setup team names, abbreviations, and league
@@ -82,8 +85,6 @@ class Team
   
   # Returns an array of all games for this team for the specified season
   def all_games(year)
-    START_MONTH = 4  # April
-    END_MONTH = 10   # October
     if !@games
       puts 'Finding all games for team...'
       results = []
@@ -124,7 +125,7 @@ class Team
   # Returns an array of the team's game objects for the date passed in.
   def games_for_date(year, month, day)
     connection = GamedayFetcher.fetch_gameday_connection(year, month, day)
-    gids = @find_gid_for_date(year, month, day, connection)
+    gids = find_gid_for_date(year, month, day, connection)
     if gids
       results = gids.collect {|gid| Game.new(gid) }
     else 
@@ -185,7 +186,7 @@ class Team
   # Returns an array of all hitters who have led off at least one game during the specified season 
   def get_leadoff_hitters_unique(year)
     results = []
-    games = @all_games(year)
+    games = all_games(year)
   end
   
   
@@ -193,7 +194,7 @@ class Team
   # The cleanup hitter is the 4th hitter in the batting order
   def get_cleanup_hitters_by_year(year)
     results = []
-    games = @all_games(year)
+    games = all_games(year)
     games.each do |game|
       boxscore = game.get_boxscore
       hitters = boxscore.get_cleanup_hitters
@@ -210,13 +211,13 @@ class Team
   # Returns an array of all hitters who have hit in the cleanup spot (4) at least one game during the specified season 
   def get_cleanup_hitters_unique(year)
     results = []
-    games = @all_games(year)
+    games = all_games(year)
   end
   
   
   def get_start_pitcher_appearances_by_year(year)
     pitchers = []
-    games = @all_games(year)
+    games = all_games(year)
     games.each do |game|
       starters = game.get_starting_pitchers
       if game.home_team_abbrev == @abrev
@@ -231,7 +232,7 @@ class Team
   
   # Returns an array of all pitchers who have started at least one game during the specified season
   def get_starters_unique(year)
-    pitchers = @get_start_pitcher_appearances_by_year(year)
+    pitchers = get_start_pitcher_appearances_by_year(year)
     h = {}
     pitchers.each {|pitcher| h[pitcher.pitcher_name]=pitcher}
     h.values
@@ -240,7 +241,7 @@ class Team
   
   def get_close_pitcher_appearances_by_year(year)
     pitchers = []
-    games = @all_games(year)
+    games = all_games(year)
     games.each do |game|
       closers = game.get_closing_pitchers
       if game.home_team_abbrev == @abrev
