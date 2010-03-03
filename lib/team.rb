@@ -50,10 +50,16 @@ class Team
     @@abrevs['was'] = ['Washington','Nationals','National']
     if (abrev && abrev != '')
       @abrev = abrev
-      @city = Team.teams[@abrev][0]
-      @name = Team.teams[@abrev][1]
-      if Team.teams[@abrev].length > 2
-        @league = Team.teams[@abrev][2]
+      if Team.teams[@abrev]
+        @city = Team.teams[@abrev][0]
+        @name = Team.teams[@abrev][1]
+        if Team.teams[@abrev].length > 2
+          @league = Team.teams[@abrev][2]
+        end
+      else
+        @city = @abrev
+        @name = @abrev
+        @league = ''
       end
     end
   end
