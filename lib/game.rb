@@ -3,6 +3,7 @@ require 'team'
 require 'players'
 require 'game_status'
 require 'event_log'
+require 'inning'
 
 
 # This class represents a single MLB game
@@ -10,7 +11,9 @@ class Game
   
   attr_accessor :gid, :home_team_name, :home_team_abbrev, :visit_team_name, :visit_team_abbrev, 
                 :year, :month, :day, :game_number, :visiting_team, :home_team
-  attr_accessor :boxscore, :rosters, :eventlog
+  attr_accessor :boxscore, :rosters, :eventlog, :media
+  
+  attr_accessor :innings #array of Inning objects, from innings files
   
   # additional attributes from master_scoreboard.xml
   attr_accessor :scoreboard_game_id, :ampm, :venue, :game_pk, :time, :time_zone, :game_type
@@ -27,6 +30,7 @@ class Game
   attr_accessor :home_hits, :away_hits, :home_errors, :away_errors, :home_runs, :away_runs
   
   def initialize(gid)
+    @innings = []
     team = Team.new('')
     if gid
       @gid = gid
@@ -358,15 +362,38 @@ class Game
   end
   
   
+  def get_media
+    if !@media
+      @media = Media.new
+      @media.load_from_id(@gid) 
+    end
+    @media
+  end
+  
+  
   # Returns an array of Inning objects that represent each inning of the game
   def get_innings
-    
+    if @innings.length == 0
+      inn_count = get_num_innings
+      (1..get_num_innings).each do |inn|
+        inning = Inning.new
+        inning.load_from_id(@gid, inn)
+        @innings << inning
+      end
+    end
+    @innings
   end
   
   
   # Returns an array of AtBat objects that represent each atbat of the game
   def get_atbats
     
+  end
+  
+  
+  # Returns the number of innings for this game
+  def get_num_innings
+    get_boxscore.linescore.innings.length
   end
   
 end

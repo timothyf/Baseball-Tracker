@@ -1,9 +1,13 @@
 <div id="game_menu">
+	<%= link_to 'Back to linescores', "/scoreboard?year=#{@gameday_info['year']}&month=#{@gameday_info['month']}&date=#{@gameday_info['day']}" %>
+	<br/><br/>
 	<% @games.each do |game| %>
 		<%  if game.away_team_city == @bs.cities[0] %>
 			<div class="linescore_brief game_selected">
+				<a href="/boxscore?gid=<%= game.gid %>">
 		<%  else %>
 			<div class="linescore_brief">
+				<a href="/boxscore?gid=<%= game.gid %>">
 		<%  end %>
 			<table cellspacing="0px">
 				<tr>
@@ -25,6 +29,7 @@
 					<td class="linescore_totals"><%= game.home_errors %></td>
 				</tr>
 			</table>
+			</a>
 		</div>
 	<% end %>
 	<div style="clear:both;"></div>

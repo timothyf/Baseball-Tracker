@@ -26,9 +26,14 @@ body {
 #footer {
 	text-align: left;
 	padding: 0px;
+	padding-top: 20px;
+	padding: 15px;
+	height: 20px;
 }
 
 .header_text {
+	float: left;
+	width: 300px;
 	padding: 5px;
 }
 
@@ -44,6 +49,23 @@ body {
 	font-size: 100%;
 	text-transform: lowercase;
 	font-weight: bold;	
+}
+
+.header_msg {
+	width: 300px;
+	float: left;
+	margin-top: 13px;
+	margin-left: 250px;
+	font-weight: bold;
+	color: green;
+}
+
+#footer #source_code {
+	float: left;
+}
+
+#footer #gameday_powered {
+	float: right;
 }
 
 

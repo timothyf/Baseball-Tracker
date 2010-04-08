@@ -12,4 +12,19 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  def set_game_info
+    @bs = BoxScore.new
+    @bs.load_from_id(params[:gid])
+    @gameday_info = GamedayUtil.parse_gameday_id('gid_' + params[:gid]) 
+    @gid = params[:gid] 
+    @game = @bs.game
+    
+    # fetch all game linescores to display on the boxscore page
+    sb = Scoreboard.new
+    sb.load_for_date(@gameday_info['year'], @gameday_info['month'], @gameday_info['day'])
+    @games = sb.games
+  end
+  
+  
 end

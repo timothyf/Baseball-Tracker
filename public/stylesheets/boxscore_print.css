@@ -1,0 +1,51 @@
+#game_menu, .tabs, .tagline, #footer, #print_control  {
+	display: none;
+}
+
+body {
+	font-size: 10pt;
+}
+
+#away_batters, #home_batters, #away_pitchers, #home_pitchers, .visitor_label, .home_label {
+	float: left;
+	width: 280px;
+}
+
+#home_batters, #home_pitchers, .home_label {
+	float: right;
+}
+
+#batting, #pitching, .team_labels {
+	width: 650px;
+	clear: both;
+	float: left;
+}
+
+.team_labels, #header, #title, .linescore_city, .linescore_header td {
+	font-weight: bold;
+}
+
+#linescore {
+	width: 600px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.linescore_city {
+	width: 120px;
+}
+
+.linescore_inning, .linescore_totals {
+	width: 25px;
+}
+
+#boxscore {
+	width: 680px;
+}
+
+#title {
+	font-size: 12pt;
+}
+
+
+

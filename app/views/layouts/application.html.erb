@@ -21,38 +21,15 @@
 
 <body>
 	<div id="content">
-		<div id="header">
-			<div class="header_text">
-				<div class="title">Baseball Tracker</div>
-				<div class="tagline">Real-time MLB Score and Stats</div>
-			</div>
-		</div>
-
+		<%= render :partial => '/shared/header' %>
 		<div id="main">
 			<%= yield %>
 			<div style="clear:both;"></div>
 		</div>
-		
-		<div id="footer">
-			<div id="">
-				Source code available via <a href="http://github.com/timothyf/Baseball-Tracker">GitHub</a>.
-			</div>
-		</div>
+		<%= render :partial => '/shared/footer' %>
 		<div style="clear:both;"></div>
 	</div>
-	
-	<!-- Google Analytics Code -->
-	<script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	try {
-	var pageTracker = _gat._getTracker("UA-3428872-19");
-	pageTracker._trackPageview();
-	} catch(err) {}</script>	
-	
-	<!-- End Google Analytics Code -->
+	<%= render :partial => '/shared/analytics' %>
 </body>
 
 </html>

@@ -1,0 +1,21 @@
+<div id="media_highlights">
+	<% @media.highlights.each do |highlight| %>
+		<div class="highlight">
+			<div class="highlight_tn">
+				<img src="<%= highlight.thumb_url %>"/>
+			</div>
+			<div class="headline">
+				<%= highlight.headline %><br/>
+				<% if highlight.res_500_url %>
+					<div class="res_view"><%= link_to 'View 512x288', highlight.res_500_url %></div><br/>
+				<% end %>
+				<% if highlight.res_400_url %>
+					<div class="res_view"><%= link_to 'View 600x338', highlight.res_400_url %></div><br/>
+				<% end %>
+				<% if highlight.res_800_url %>
+					<div class="res_view"><%= link_to 'View 640x360', highlight.res_800_url %></div>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+</div>

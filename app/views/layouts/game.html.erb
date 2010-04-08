@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Baseball Tracker</title>
+	<link rel="shortcut icon" href="/favicon.ico" />
+	
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'boxscore' %>
+	<link rel="stylesheet" type="text/css" media="print" href="/stylesheets/boxscore_print.css" />
+
+	
+	<%= javascript_include_tag "application" %>
+	
+    <script type="text/javascript">  	
+		var authenticity_token = "<%= form_authenticity_token %>";				
+    </script>
+	
+	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
+	
+</head>
+
+<body>
+	<div id="content">
+		<%= render :partial => '/shared/header' %>
+		<div id="main">			
+			<div id="title">	
+				<%= @gameday_info['year'] %>/<%= @gameday_info['month'] %>/<%= @gameday_info['day'] %>
+				&nbsp;&nbsp;
+				<%= @bs.cities[0] %> vs. <%= @bs.cities[1] %><br/>
+			</div>		
+			<%= render :partial => '/boxscore/game_menu' %>
+			
+			<div class="tabs">
+				<% if @tab == 'boxscore' %>
+					<a class="tab selected" href="boxscore?gid=<%= @gid %>"><span>Boxscore</span></a>
+				<% else %>
+					<a class="tab" href="boxscore?gid=<%= @gid %>"><span>Boxscore</span></a>
+				<% end %>
+				<% if @tab == 'playbyplay' %>
+					<a class="tab selected" href="/play_by_play?gid=<%= @gid %>"><span>Play-by-Play</span></a>
+				<% else %>
+					<a class="tab" href="/play_by_play?gid=<%= @gid %>"><span>Play-by-Play</span></a>
+				<% end %>
+				<% if @tab == 'pitchbypitch' %>
+					<a class="tab selected" href="/pitch_by_pitch?gid=<%= @gid %>"><span>Pitch-by-Pitch</span></a> 
+				<% else %>
+					<a class="tab" href="/pitch_by_pitch?gid=<%= @gid %>"><span>Pitch-by-Pitch</span></a>
+				<% end %>
+				<% if @tab == 'highlights' %>
+					<a class="tab selected" href="/highlights?gid=<%= @gid %>"><span>Highlights</span></a>
+				<% else %>
+					<a class="tab" href="/highlights?gid=<%= @gid %>"><span>Highlights</span></a>
+				<% end %>
+			</div>
+			
+			<div id="game_detail" class="tab_content">
+				<%= render :partial => '/boxscore/linescore' %>
+				<div id="print_control">
+					<input type="button" onClick="window.print()" value="Print this view"/>
+				</div>
+				<%= yield %>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		
+		<%= render :partial => '/shared/footer' %>
+		<div style="clear:both;"></div>
+	</div>
+	<%= render :partial => '/shared/analytics' %>
+</body>
+
+</html>

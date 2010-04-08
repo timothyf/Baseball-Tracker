@@ -1,17 +1,17 @@
-<%= stylesheet_link_tag 'boxscore' %>
-
-
-<%= render :partial => '/boxscore/game_menu' %>
-
-<div class="tabs">
-	<a class="tab selected" href="boxscore?gid=<%= @gid %>"><span>Boxscore</span></a>
-	<a class="tab" href="/play_by_play?gid=<%= @gid %>"><span>Play-by-Play</span></a>
-	<a class="tab" href="/pitchbypitch?gid=<%= @gid %>"><span>Pitch-by-Pitch</span></a> 
-	<a class="tab" href="/highlights?gid=<%= @gid %>"><span>Highlights</span></a>
-</div>
-
-<div id="game_detail" class="tab_content">
-	<%= render :partial => '/boxscore/linescore' %>
-	<%= render :partial=>'playbyplay' %>
-	<div style="clear:both;"></div>
+<div class="pbp">
+	<% (1..@eventlog.max_inning).each do |inning| %>
+		<div class="pbp_inning_label">Top of Inning - <%= inning %> - <%= @bs.cities[0] %></div>
+		<% processing_away = true %>
+		<ul>
+		<% @eventlog.events_by_inning(inning.to_s).each do |event| %>
+			<% if event.team == 'home' && processing_away == true %>
+				</ul>
+				<div class="pbp_inning_label">Bottom of Inning - <%= inning %> - <%= @bs.cities[1] %></div>
+				<ul>
+				<% processing_away = false %>
+			<% end %>
+			<li><%= event.description %></li>
+		<% end %>
+		</ul>
+	<% end %>
 </div>

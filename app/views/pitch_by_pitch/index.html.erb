@@ -1,0 +1,35 @@
+<div class="pbp">
+	<% @innings.each do |inning| %>	
+		<div class="top_inning">	
+			<div class="pbp_inning_label">Top of Inning - <%= inning.num %> - <%= @bs.cities[0] %></div>
+			<% abs = inning.top_atbats %>
+			<% abs.each do |ab| %>
+				<% pitcher = @rosters[1].find_player_by_id(ab.pitcher_id) %>
+				<b>Pitcher:</b> <%= pitcher.last %>
+				<% ab.pitches.each do |pitch| %>
+					<div class="pitch">
+						<%= pitch_data(pitch) %>
+					</div>
+				<% end %>
+				<%= ab.des %>
+				<br/><br/>
+			<% end %>
+		</div>
+		
+		<div class="bottom_inning">
+			<div class="pbp_inning_label">Bottom of Inning - <%= inning.num %> - <%= @bs.cities[1] %></div>
+			<% abs = inning.bottom_atbats %>
+			<% abs.each do |ab| %>
+				<% pitcher = @rosters[0].find_player_by_id(ab.pitcher_id) %>
+				<b>Pitcher:</b> <%= pitcher.last %>
+				<% ab.pitches.each do |pitch| %>
+					<div class="pitch">
+						<%= pitch_data(pitch) %>
+					</div>
+				<% end %>
+				<%= ab.des %>
+				<br/><br/>
+			<% end %>
+		</div>
+	<% end %>
+</div>
