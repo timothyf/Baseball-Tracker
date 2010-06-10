@@ -1,10 +1,9 @@
-
 production:
   adapter: mysql
   database: baseball_tracker_prod
-  username: timothyf
-  password: 3121018
-  host: mysql.timothyfisher.com
+  username: root
+  password: 
+  host: localhost
   
 development:
   adapter: mysql
